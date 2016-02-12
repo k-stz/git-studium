@@ -2,7 +2,7 @@
 
 Program Hi_Program;
 
-Procedure Test;
+Procedure Test1;
 {yep, this is comment syntax}
 Begin
    writeln('test called, son.');
