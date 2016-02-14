@@ -14,6 +14,16 @@ Program Hi_Program; {<- this is the whole "program heading". What follows, all
 var
    x : integer;
 
+procedure IsOdd (input : integer);
+Begin
+   write(input);
+   if (odd(input)) then
+      writeln(' is odd') {<- careful, no semicolon here!}
+   else
+      writeln(' is even');
+End;
+
+
 Procedure Test1;
 {declaration part:   <constant definition part>
                    + <type definition part>
@@ -89,5 +99,6 @@ Begin
    (* x is still 22 here *)
 
    Test1;
+   IsOdd(10);
 End. 
 
