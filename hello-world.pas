@@ -12,7 +12,7 @@ Program Hi_Program; {<- this is the whole "program heading". What follows, all
 		    the dot '.' (the dot in 'End.')}
 
 var
-   x :  integer;
+   x : integer;
 
 Procedure Test1;
 {declaration part:   <constant definition part>
@@ -31,11 +31,16 @@ const PI2 = sqr(pi); {constants should be written in _uppercase_! (style guide)}
    and yield ORD(<tWeek var>) from them *)
 type tWeek = (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
 
+{ dt. Ausschnittstyp, en. /subrange type/ }
+  tWeekend = Saturday .. Sunday;
+
+
 { "variable declaration part" }
 var
    age,
    money : integer; 	{age and money both get the type integer here} 
-   day : tWeek;
+   day : tWeek;							       
+   weekend : tWeekend;
 
 {/declaration part }
 
@@ -50,7 +55,13 @@ Begin
    {  money := age * 2;  {<- assignement statement } }
    { writeln(money); }
    { writeln( day ); }
-   write(tWeek(ord(succ (day)))); (* like with standard types, the type identifier is also a function! *)
+   writeln('own type definitions tests: ');
+   writeln(tWeek(ord(succ (day)))); (* like with standard types, the type identifier is also a function! *)
+
+   weekend := tWeekend(5); {!! careful, we can now only use tWeekend(5) and tWeekend(6) !!}
+   writeln(weekend);  
+   weekend := Sunday;	   {we can use the enumerator elements explicitly though!}
+   writeln(weekend);
 End;
 {/statement part }
 
