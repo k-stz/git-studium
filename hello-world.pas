@@ -4,32 +4,55 @@
   vor der Benutzung, einem eindeutigen Datentyp zugeordnet werden
   muss. }
 
-Program Hi_Program;
+{Program: <program heading> + <block> + . }
+
+
+Program Hi_Program; {<- this is the whole "program heading". What follows, all
+		    the way to the 'End.' at the very end is the <block>, minus
+		    the dot '.' (the dot in 'End.')}
+
+var
+   x :  integer;
 
 Procedure Test1;
-{declaration part:}
+{declaration part:   <constant definition part>
+                   + <type definition part>
+                   + <variable declaration part> }
 
 { It seems between Begin and End variable definition is forbidden }
+
 const PI2 = sqr(pi); {constants should be written in _uppercase_! (style guide)}
+
+
+{ type definition part, comes aptly before the variable one,
+  as those will be used for variables! }
+
+(* these also have an inner order such that we can compare them
+   and yield ORD(<tWeek var>) from them *)
+type tWeek = (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
 
 { "variable declaration part" }
 var
    age,
-   money : integer; 	{age and money both get the type integer here}
+   money : integer; 	{age and money both get the type integer here} 
+   day : tWeek;
 
 {/declaration part }
-Begin
-  {statement part}
-   writeln('pi2:');
-   Writeln(pi2);
-   Writeln('How old are you');
-   readln(age);
-   writeln('That''s funny, I''m also');
-   writeln(age);
-   writeln('years old!');
-  {/statement part }
-End;
 
+{statement part: 'Begin'-label + <statement part> + 'End'-label}
+Begin
+   { writeln('pi2:'); }
+   { Writeln(pi2); }
+   { Writeln('How old are you'); }
+   { readln(age); }
+   { writeln('That''s funny, I''m also', age); }
+   { writeln('years old! And I have twice as much money:'); }
+   {  money := age * 2;  {<- assignement statement } }
+   { writeln(money); }
+   { writeln( day ); }
+   write(tWeek(ord(succ (day)))); (* like with standard types, the type identifier is also a function! *)
+End;
+{/statement part }
 
 
 Begin
@@ -43,12 +66,17 @@ Begin
    {Boolean: }
    Writeln('Boolean:');
    Writeln(true and false or not false ); {1 ∧ 0 ∨ ¬0}
-   Writeln('1=1 and true != false:');
-   Writeln((1 = 1) and true <> false);
-   Writeln('1 <= 12:');
-   Writeln(1 <= 12);
-   Writeln(1 <> 1);
+   Writeln('1=1 and true != false:',(1 = 1) and true <> false);
+   Writeln('1 <= 12:',1 <= 12,1 <> 1);
+
+   x := 10;
+   writeln(x);
+   Begin (* not a new namespace or lexical scope *)
+      x := 22;
+      writeln(x);
+   End;
+   (* x is still 22 here *)
 
    Test1;
-end.
+End. 
 
