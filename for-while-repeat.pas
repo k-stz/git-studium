@@ -1,9 +1,7 @@
 (* Author: k-stz *)
 
-{ Shows of the FOR, WHILE and REPEAT loop syntax }
-
 program Loops;
-
+{ Shows off the FOR, WHILE and REPEAT loop syntax }
   var
   i :  integer;
 
@@ -42,6 +40,21 @@ begin
    end;
 end;
 
+procedure repeatGreet ();
+  var
+     name	: string;
+     cheerTimes	:  integer;
+
+begin
+   name := 'Blaise P.';
+   cheerTimes := 3;
+   { repeat is like Java do-while statement, that is, it runs at least once }
+   repeat
+      writeln('sup, name''s ', name);
+      cheerTimes := cheerTimes - 1;
+   until cheerTimes <= 0;
+end;
+
 begin
    
    writeln('for:--------');
@@ -51,8 +64,10 @@ begin
    writeln('fact(10):');
    fact(8);
 
-   writeln('while:------');
-   whilePrompt();   
-   
+   { writeln('while:------'); }
+   { whilePrompt();    }
 
-end.
+   writeln('repeat:------');
+   repeatGreet();   
+
+end. {Loops}
