@@ -35,7 +35,7 @@ begin
       writeln('type q, to quit');     
       readln(input); { ugh, you have to create a new variable so it implicitly receives
                        a value, cause READLN doesn't return a value!!!}
-      if 'q' = input then
+      if ('q' = input) then
 	 askAgain := false;
    end;
 end;
@@ -64,10 +64,9 @@ begin
    writeln('fact(10):');
    fact(8);
 
-   { writeln('while:------'); }
-   { whilePrompt();    }
+   writeln('while:------');
+   whilePrompt();
 
    writeln('repeat:------');
    repeatGreet();   
-
 end. {Loops}
