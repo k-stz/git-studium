@@ -43,8 +43,7 @@
 {Program: <program heading> + <block> + . }
 
 program HiProgram; {<- this is the whole "program heading". What follows, all
-		       the way to the 'End.' at the very end is the <block>, minus
-		       the dot '.' (the dot in 'End.')}
+		       the way to the 'End.' at the very end is the <block> }
 
 { The point of this program is its implementation, a collection of concepts and idea
   of the programming language Pascal }
