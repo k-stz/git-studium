@@ -25,7 +25,24 @@ begin
 end;
 
 
+function Rec (x	: integer) : integer;
+{ example of a recursive function }
+
+begin
+   if (x >= 0) then 
+     begin
+	writeln('recursed.');
+	writeln(Rec (x-1));
+     end
+   else
+      writeln('done with the cursing');
+
+   writeln('uncurse.');
+   Rec := x;
+end;
+
 begin
    writeln('Dear computer Sir, what is 10 - 2?');
    writeln(Add(10, -2));
+   writeln('Recursion test: ', Rec(3));
 end.
