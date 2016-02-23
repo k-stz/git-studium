@@ -22,18 +22,24 @@ begin
    { oh.. oh wow, this is how we return a value: }
    Add := x + y;
    { yep, the function name is used as a container for the return value! Weird. }
+   { Well it can make for neat documentation, as in: the sqrt of 4 is 2, that is,
+     Sqrt := 2; }
+   { CAREFUL: The function name return-value-container- may _never be read_!!
+     Though it seems to work, it may be due to the compiler implementation. }
 end;
 
 
 function Rec (x	: integer) : integer;
-{ example of a recursive function }
+{ example of a recursive function 
+  ! style guide requires to, usually, say something about the formal parameters used !
+  x is used as for the rule to terminate the building of the deferred recursion chain}
 
 begin
    if (x >= 0) then 
-     begin
-	writeln('recursed.');
-	writeln(Rec (x-1));
-     end
+   begin { remember, this 'begin' here has to be in the same column as its IF (style guide)}
+      writeln('recursed.');
+      writeln(Rec (x-1));
+   end
    else
       writeln('done with the cursing');
 
