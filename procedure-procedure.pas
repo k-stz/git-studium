@@ -1,14 +1,17 @@
 { Procedure - imperative side effects }
 
+{ inVar - is like the local constant of a procedure, all function parameters are 'inVars' }
+{ var outVar - is never read, only used to return a value, that's why it should always be a var-parameter }
+{ var ioVar - intialized as it is being called, and used to change the the value in the procedure body }
 program ProdcureExample;
 
   var sumCatcher : integer;
       inc	 : integer;
 
-procedure Add ({in} x : integer; {in} y : integer; {out} var sum : integer);
+procedure Add ({in} inX : integer; {in} inY : integer; {out} var outSum : integer);
 { Add x and y together and store the result in sum. }
 begin
-   sum := x + y;
+   outSum := inX + inY;
 end;
 
 { functions must return values. 'Increment', the function name, must be assigned a
@@ -41,10 +44,10 @@ end; { Increment }
   environment. IIRC the lack of this is firstly because it is error prone and bad
   style to begin with.
   }
-procedure IncrementByReference(var toBeIncremented : integer );
+procedure IncrementByReference(var ioToBeIncremented : integer );
 begin
-   toBeIncremented := toBeIncremented + 1;
-end;
+   ioToBeIncremented := ioToBeIncremented + 1;
+end; {IncrementByReference}
 
 begin
    writeln('Side-effects example:');
