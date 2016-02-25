@@ -5,10 +5,10 @@ program ProdcureExample;
   var sumCatcher : integer;
       inc	 : integer;
 
-procedure Add ({in} x : integer; {in} y : integer; {out} sum : integer);
+procedure Add ({in} x : integer; {in} y : integer; {out} var sum : integer);
 { Add x and y together and store the result in sum. }
 begin
-   sum := x + y; { TODO: that's not how it works, &syntax seems to compile though}
+   sum := x + y;
 end;
 
 { functions must return values. 'Increment', the function name, must be assigned a
@@ -23,6 +23,12 @@ procedure Increment();
 begin
    inc := inc + 1;
 end; { Increment }
+
+{ referenc parameter, an example using a procedure: }
+procedure IncrementByReference(var toBeIncremented : integer );
+begin
+   toBeIncremented := toBeIncremented + 1;
+end;
 
 begin
    writeln('Side-effects example:');
@@ -40,4 +46,10 @@ begin
 
    writeln('function ConstantOne:');
    writeln(ConstantOne());
+
+   inc := 0;
+   writeln('Call by reference: ', '        inc = ', inc);
+   write('IncrementByReference(inc); ', 'inc = ');
+   IncrementByReference(inc);
+   writeln(inc);
 end. { ProdcureExample }					  

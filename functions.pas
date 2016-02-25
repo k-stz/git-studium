@@ -26,7 +26,7 @@ begin
      Sqrt := 2; }
    { CAREFUL: The function name return-value-container- may _never be read_!!
      Though it seems to work, it may be due to the compiler implementation. }
-end;
+end; {Add}
 
 
 function Rec (x	: integer) : integer;
