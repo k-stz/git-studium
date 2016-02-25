@@ -32,9 +32,9 @@ end;
 
 begin
    writeln('Side-effects example:');
-   writeln(sumCatcher);
+   writeln('sumCatcher before calling side-effect procedure:  ', sumCatcher);
    Add(1,9, sumCatcher);
-   { writeln(sumCatcher); }
+   writeln('sumCatcher after calling Add(1, 9, sumCatcher):   ', sumCatcher); 
 
    writeln('procedure INC: ');
    inc := 0;
