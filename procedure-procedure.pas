@@ -24,7 +24,23 @@ begin
    inc := inc + 1;
 end; { Increment }
 
-{ referenc parameter, an example using a procedure: }
+{ reference parameter, an example using a procedure, in Pascal this is
+  also called a var-parameter. On invoking the procedure, the formal parameter
+  "toBeIncremented" doesn't receive the value of the variable passed to it
+  IncrementByReference(iMeanThisVariable);
+  but rather the reference to that variable - or to be perfectly accurate: 
+  its address.
+  The address is like the global unique identifier of a variable, whoever gets hold
+  of it will change the actuall variable that it belongs to. That's why this procedure
+  will change the value of a variable that was passed to it rather than its local 
+  variable "toBeIncremented".
+  In C, C++ the syntax for this is not: var <identifier> but &<identifier> that is
+  the ampersand is directly prepended to the formal parameter. In CL passing a 'place'
+  around is not possible, that is, "places are not first-class-objects". We can get at
+  the concept through passing lambda closures about that have the value in its 
+  environment. IIRC the lack of this is firstly because it is error prone and bad
+  style to begin with.
+  }
 procedure IncrementByReference(var toBeIncremented : integer );
 begin
    toBeIncremented := toBeIncremented + 1;
