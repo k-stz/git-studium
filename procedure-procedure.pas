@@ -43,6 +43,14 @@ end; { Increment }
   the concept through passing lambda closures about that have the value in its 
   environment. IIRC the lack of this is firstly because it is error prone and bad
   style to begin with.
+Efficiency:
+  Whenever a procedure is called, or a function, with in parameters, new memory needs to
+  be allocated for the formal parameters to store the copies of them. var-parameters,
+  however, don't need to allocate new memory as we're dealing with the reference passed
+  directly.
+  However, this may be memory efficient but side-effects are a can of worms on their
+  own, when it comes to debugging, readability etc. Knuth comes to mind: "Premature 
+  optimization is the root of all evil."
   }
 procedure IncrementByReference(var ioToBeIncremented : integer );
 begin
