@@ -48,6 +48,8 @@ Efficiency:
   be allocated for the formal parameters to store the copies of them. var-parameters,
   however, don't need to allocate new memory as we're dealing with the reference passed
   directly.
+  This should be especially considered when the formal parameters receive huge arguments
+  such as a whole array containg a whole array of pixels.
   However, this may be memory efficient but side-effects are a can of worms on their
   own, when it comes to debugging, readability etc. Knuth comes to mind: "Premature 
   optimization is the root of all evil."
