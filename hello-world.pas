@@ -1,3 +1,8 @@
+{$R+ <- this neables range checking, this can be enabled by passing an option to the command line
+        compiler: fpc -Cr.
+        the next option, sadly, doesn't have a commandline switch: }
+{$B+ <- this enable complete boolean evlauation, see the test below using isEvaluated
+        it won't be called if this $B+ is missing} 
 (* Author: k-stz *)
 
 {Style guide:
@@ -112,6 +117,11 @@ begin
 end { Test1 };
 {/statement part }
 
+function isEvaluated () : boolean;
+begin
+   writeln('isEvaluated invoked!');
+   isEvaluated := true;
+end; { isEvaluated}
 
 begin
    writeln('maxinteger:'); {<- 'strings'}
@@ -137,5 +147,10 @@ begin
 
    Test1;
    IsOdd(10);
+
+   writeln('Complete Boolean Evaluation test:');
+   if (true or isEvaluated()) then
+      writeln('done');
+   
 end { HiProgram }. 
 
