@@ -1,5 +1,5 @@
-{ dynamic datastructres are those who can grow and shrink and run-time
-  such as lists. The opposite are static datastructures, like arrays in most
+{ dynamic data structure are those who can grow and shrink and run-time
+  such as lists. The opposite are static data structures, like arrays in most
   languages.
   The dynamic property can be realised with points, by having them point to objects
   which in turn also contain pointers that could point to others (think closure
@@ -36,7 +36,7 @@ program DynamicDatastructures (input, output);
      emptyList :^tList;
 
 function IntCons (inCar : integer; inCdr : tList) : tList;
-{ Can be used to build a linear list inside out with nested IntCons(<int>, IntCons(..., nil))   }
+{ Can be used to build a linear list inside out with nested IntCons(<int>, IntCons(..., <tList>))   }
   var
      newCons : ^tList;
 begin
@@ -52,10 +52,10 @@ begin
    newCons^.cdr^ := inCdr;
   
    IntCons := newCons^;
-end;
+end; { IntCons }
 
 begin
-   { first you always need to initilize the pointers with new() }
+   { first you always need to initialize the pointers with new() }
    new(x);
    new(y);
    writeln('init x^ value: ', x^);
@@ -82,10 +82,10 @@ begin
    list^.car := 11;
    writeln(list^.car);
    list^.cdr := list; { circular list }
-   writeln(list^.cdr^.cdr^.car); { <- here we can indefinetely add .cdr^, walking through the
-                                      same object everytime}
+   writeln(list^.cdr^.cdr^.car); { <- here we can indefinitely add .cdr^, walking through the
+                                      same object every time}
    { But how do we actually extend the list at runtime?
-   Lets use a procedure that does that for ust }
+   Lets use a procedure that does that for us }
    { we need the concept of nil, the empty list, the terminating element. For lack of a better
    way for now we will use the proxy variable emptyList: }
    new(emptyList);
