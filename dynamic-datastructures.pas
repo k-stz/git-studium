@@ -20,11 +20,40 @@ program DynamicDatastructures (input, output);
 		   name	: string;
 		end;	
      tRefHuman =  ^tHuman;
+     { for implementation of linear lists }
+     tRefList = ^tList; {<- compiler without error if tListe = ... is added below}
+     tList = record
+		car : integer;
+		cdr : tRefList
+	     end;
+
   var
      bob,
-     mary     : ^tHuman;
-     x, 
-     y     : ^integer;
+     mary : ^tHuman;
+     x,
+     y : ^integer;
+     list,
+     emptyList :^tList;
+
+function IntCons (inCar : integer; inCdr : tList) : tList;
+{ Can be used to build a linear list inside out with nested IntCons(<int>, IntCons(..., nil))   }
+  var
+     newCons : ^tList;
+begin
+   writeln('IntCons called with car: ', inCar);
+ 
+   { first we create a fresh 'cons cell' }
+   new(newCons);
+   { immediately we create a fresh pointer in its nested cdr }
+   new(newCons^.cdr);
+   { store in its car the formal inCar }
+   newCons^.car := inCar;
+   { and now that we have initialized it, this will work: }
+   newCons^.cdr^ := inCdr;
+  
+   IntCons := newCons^;
+end;
+
 begin
    { first you always need to initilize the pointers with new() }
    new(x);
@@ -47,5 +76,26 @@ begin
    y := nil;	{ note that after dispose(ptr) they don't become nil pointers..}
    writeln(x = y); { hence this is false! }
 
+   { Linear list test: } 
+   writeln('Linear list test:');
+   new(list);
+   list^.car := 11;
+   writeln(list^.car);
+   list^.cdr := list; { circular list }
+   writeln(list^.cdr^.cdr^.car); { <- here we can indefinetely add .cdr^, walking through the
+                                      same object everytime}
+   { But how do we actually extend the list at runtime?
+   Lets use a procedure that does that for ust }
+   { we need the concept of nil, the empty list, the terminating element. For lack of a better
+   way for now we will use the proxy variable emptyList: }
+   new(emptyList);
+   { the point of using emptyList is, that calling IntCons(33, nil) doesn't work!  nil
+   is not accepted by the function definition because nil is not of type tList}
+   list^ := IntCons(555, IntCons(33, emptyList^));
+   writeln('We construct a linear list:');
+   writeln('list^ := IntCons(555, IntCons(33, emptyList^)');
+   writeln('contents of our newly build list:');
+   writeln('(car list): ', list^.car);
+   writeln('(cdr (car list)): ', list^.cdr^.car);
 
 end. { DynamicDatastructures }
