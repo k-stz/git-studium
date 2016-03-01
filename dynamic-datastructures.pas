@@ -91,6 +91,9 @@ begin
    new(emptyList);
    { the point of using emptyList is, that calling IntCons(33, nil) doesn't work!  nil
    is not accepted by the function definition because nil is not of type tList}
+   { Update: the script itself uses such an init pointer, calling it the "anchor" of the list
+     and being of type tList and assigning it the value nil, that's what I left out:
+     emptyList = nil; }
    list^ := IntCons(555, IntCons(33, emptyList^));
    writeln('We construct a linear list:');
    writeln('list^ := IntCons(555, IntCons(33, emptyList^)');
