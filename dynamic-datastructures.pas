@@ -34,6 +34,7 @@ program DynamicDatastructures (input, output);
      y : ^integer;
      list,
      emptyList :^tList;
+     refList : tRefList;
 
 function IntCons (inCar : integer; inCdr : tList) : tList;
 { Can be used to build a linear list inside out with nested IntCons(<int>, IntCons(..., <tList>))   }
@@ -53,6 +54,38 @@ begin
   
    IntCons := newCons^;
 end; { IntCons }
+
+{ The main difference between ^tList and tRefList seems to be that that only the
+  latter can be used as a type in for formal parameters, while the former is just
+  syntax to take get at the reference of an object }
+procedure BuildList (var outAnchor : tRefList); 
+{ procedure defined by the script, using a more efficient and elegant way
+  of creating a linked list }
+
+  var
+     cons : ^tList;
+     number : integer;
+
+begin
+   outAnchor := nil;
+   { important usecase of readln(), not introcduced yet, passing it a variable will
+   assign the input to it: }
+   readln(number);
+   while number <> 0 do
+   begin
+      new(cons); {allocate fresh memory for a tList, 'cons', datastructure}
+      cons^.car := number; { fill the CAR with data}
+      {this is the crucial part, on the first run through the loop this will let
+       the freshly allocated pointer, 'cons', point to the nullpointer outAnchor,
+       on every subsequent call it will point to the previously allocated 'cons'.
+       again: The previously allocated cons will point to the init nullpointer or 
+       to another previously allocated cons}
+      cons^.cdr := outAnchor; 
+      outAnchor := cons; { now this may seem confusing at first, aren't we creating
+			 circular list here? cons.cdr->outAnchor->cons ?}
+      readln(number);
+   end; {while-loop}
+end; { BuildList }
 
 begin
    { first you always need to initialize the pointers with new() }
@@ -91,9 +124,9 @@ begin
    new(emptyList);
    { the point of using emptyList is, that calling IntCons(33, nil) doesn't work!  nil
    is not accepted by the function definition because nil is not of type tList}
-   { Update: the script itself uses such an init pointer, calling it the "anchor" of the list
-     and being of type tList and assigning it the value nil, that's what I left out:
-     emptyList = nil; }
+   { Update: the script itself also uses an init pointer, calling it the "anchor" of the
+   list and being of type tList and assigning it the value nil, that's what I was supposed to
+   do: emptyList := nil; }
    list^ := IntCons(555, IntCons(33, emptyList^));
    writeln('We construct a linear list:');
    writeln('list^ := IntCons(555, IntCons(33, emptyList^)');
@@ -101,4 +134,10 @@ begin
    writeln('(car list): ', list^.car);
    writeln('(cdr (car list)): ', list^.cdr^.car);
 
+   writeln('building a list from input, type in at least two numbers, ',
+	   'terminate with 0 :');
+
+   BuildList(refList);
+   writeln(refList^.car);
+   writeln(refList^.cdr^.car);
 end. { DynamicDatastructures }
