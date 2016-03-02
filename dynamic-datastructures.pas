@@ -75,14 +75,22 @@ begin
    begin
       new(cons); {allocate fresh memory for a tList, 'cons', datastructure}
       cons^.car := number; { fill the CAR with data}
-      {this is the crucial part, on the first run through the loop this will let
-       the freshly allocated pointer, 'cons', point to the nullpointer outAnchor,
-       on every subsequent call it will point to the previously allocated 'cons'.
-       again: The previously allocated cons will point to the init nullpointer or 
-       to another previously allocated cons}
+
+      { first of remember that if we assign a pointer to another pointer, then what we
+      really do is _make them both point to the same thing_ _not_ themselves }
+      {this is the crucial part, on the first run through the loop this will let the
+      freshly allocated pointer, 'cons', point to the same thing as outAnchor, namely nil,
+      the nullpointer convention.  On every subsequent call it will point to the
+      previously allocated 'cons'.  Because the previous cons is what outAnchor in,
+      outAnchor := cons;, points to. again: The previously allocated cons will point to the
+      init nullpointer or to another previously allocated cons, as we walk through the
+      loop up until outAnchor gets a new thing to point to assigned below, it will keep
+      pointing to the previous cons.}
       cons^.cdr := outAnchor; 
       outAnchor := cons; { now this may seem confusing at first, aren't we creating
-			 circular list here? cons.cdr->outAnchor->cons ?}
+			 circular list here? cons.cdr->outAnchor->cons ?
+                         No, at this point 'cons' and 'outAnchor' point to the same thing
+			 - the currently created tList: new(cons) }
       readln(number);
    end; {while-loop}
 end; { BuildList }
