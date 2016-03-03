@@ -82,18 +82,35 @@ begin
       freshly allocated pointer, 'cons', point to the same thing as outAnchor, namely nil,
       the nullpointer convention.  On every subsequent call it will point to the
       previously allocated 'cons'.  Because the previous cons is what outAnchor in,
-      outAnchor := cons;, points to. again: The previously allocated cons will point to the
-      init nullpointer or to another previously allocated cons, as we walk through the
-      loop up until outAnchor gets a new thing to point to assigned below, it will keep
-      pointing to the previous cons.}
+      outAnchor := cons;, points to. again: The previously allocated cons will point to
+      the init nullpointer after that, the second run in the while loop, to another
+      previously allocated cons, as we walk through the loop up until outAnchor gets a new
+      thing to point to assigned below, it will keep pointing to the previous cons.}
       cons^.cdr := outAnchor; 
-      outAnchor := cons; { now this may seem confusing at first, aren't we creating
+      outAnchor := cons; { now this may seem confusing at first, aren't we creating a
 			 circular list here? cons.cdr->outAnchor->cons ?
                          No, at this point 'cons' and 'outAnchor' point to the same thing
 			 - the currently created tList: new(cons) }
       readln(number);
    end; {while-loop}
 end; { BuildList }
+
+
+procedure PrintList(inList :  tRefList);
+{ Prints the elements of the list given. }
+
+   var 
+      Cons : tRefList;
+
+begin
+   writeln('Contents of List:');
+   Cons := inList;
+   while inList <> nil do
+   begin
+      write(inList^.car, ' ');
+      inList := inList^.cdr;
+   end;
+end; { PrintList }
 
 begin
    { first you always need to initialize the pointers with new() }
@@ -142,10 +159,7 @@ begin
    writeln('(car list): ', list^.car);
    writeln('(cdr (car list)): ', list^.cdr^.car);
 
-   writeln('building a list from input, type in at least two numbers, ',
-	   'terminate with 0 :');
-
+   writeln('building a list of numbers, give me some numbers, terminate with 0 :');
    BuildList(refList);
-   writeln(refList^.car);
-   writeln(refList^.cdr^.car);
+   PrintList(refList);
 end. { DynamicDatastructures }
