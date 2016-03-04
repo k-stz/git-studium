@@ -100,7 +100,7 @@ procedure PrintList(inList :  tRefList);
 { Prints the elements of the list given. }
 
    var 
-      Cons : tRefList;
+   Cons : tRefList;
 
 begin
    writeln('Contents of List:');
