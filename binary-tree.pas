@@ -91,18 +91,36 @@ begin
    else	{ null pointer}
    begin
       writeln('Element ', inElement, ' NOT found');
-      new(FindNode);
       FindNode := nil;
    end;
-
 end; { FindNode }
+
+{ NEXT-TODO: fully implement }
+procedure InsertNode (var ioTree : tRefTree; inElement : integer);
+{ inserts the node, no compound nodes, just the integer element }
+  var
+     newNode :  tRefTree;
+begin
+   if (ioTree <> nil) then
+   begin
+   end
+   else
+   begin
+      new(newNode);
+      newNode^.data := inElement;
+      newNode^.left := nil;
+      newNode^.right := nil;
+      { ioTree = newNode; }
+   end;
+
+end;
 
 begin
    tree := TestTree();
    PrintNode(tree);
-   writeln(tree^.right^.data, '-----------');
-    { TODO if this is missing then}
-   {  the PrintNode.. below gets a memory access error.. }
    FindNode(tree, 3);
    PrintNode(FindNode(tree, 44));
+   writeln('inserting node 12 test:');
+   InsertNode(tree, 12);
+   PrintNode(tree^.right^.left);
 end. { BinaryTree }
