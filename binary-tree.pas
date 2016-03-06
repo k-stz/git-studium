@@ -44,40 +44,65 @@ begin
 end; { TestTree }
 
 
-{ NEXT-TODO: implement this }
-function FindNode (tree	: tRefTree; element : integer) : tRefTree;
-
+procedure PrintNode (inNode : tRefTree);
+{ Print the node and its children. }
 begin
-   if (tree <> nil) then
+  if (inNode = nil) then
+     writeln('Node is empty')
+  else
+  begin
+     writeln('Node data: ', inNode^.data);
+     if (inNode^.left <> nil) then
+	writeln('     left: ', inNode^.left^.data)
+     else
+	writeln('     left: NIL');
+     write('    right: ');
+     if (inNode^.right <> nil) then
+	writeln(inNode^.right^.data)
+     else
+	writeln('NIL');
+  end;
+end;  { PrintNode }
+
+
+function FindNode (inTree : tRefTree; inElement : integer) : tRefTree;
+{ Find the Node in the inTree holding the element and return the pointer
+to it. }
+begin
+   if (inTree <> nil) then
    begin
       { match? }
-      if (tree^.data = element) then
+      if (inTree^.data = inElement) then
       begin
-	 writeln('Element ', element, ' found');
-	 FindNode := tree;
+	 writeln('Element ', inElement, ' found');
+	 FindNode := inTree;
       end
       else 
-      { recursing down the tree }
+      { recursing down the inTree }
       begin
-	 { move down the tree based on the current node element being
+	 { move down the inTree based on the current node inElement being
 	  bigger or smaller than the one we're looking for }
-	 if (tree^.data >= element) then
-	    FindNode(tree^.left, element)
+	 if (inTree^.data >= inElement) then
+	    FindNode := FindNode(inTree^.left, inElement)
          else
-	    FindNode(tree^.right, element);
+	    FindNode := FindNode(inTree^.right, inElement);
       end;
    end
    else	{ null pointer}
    begin
-      writeln('Element ', element, ' NOT found');
+      writeln('Element ', inElement, ' NOT found');
+      new(FindNode);
       FindNode := nil;
    end;
 
-end;
+end; { FindNode }
 
 begin
    tree := TestTree();
-   writeln(tree^.right^.data);
+   PrintNode(tree);
+   writeln(tree^.right^.data, '-----------');
+    { TODO if this is missing then}
+   {  the PrintNode.. below gets a memory access error.. }
    FindNode(tree, 3);
-   FindNode(tree, 45);
+   PrintNode(FindNode(tree, 44));
 end. { BinaryTree }
