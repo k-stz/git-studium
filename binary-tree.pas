@@ -44,7 +44,40 @@ begin
 end; { TestTree }
 
 
+{ NEXT-TODO: implement this }
+function FindNode (tree	: tRefTree; element : integer) : tRefTree;
+
+begin
+   if (tree <> nil) then
+   begin
+      { match? }
+      if (tree^.data = element) then
+      begin
+	 writeln('Element ', element, ' found');
+	 FindNode := tree;
+      end
+      else 
+      { recursing down the tree }
+      begin
+	 { move down the tree based on the current node element being
+	  bigger or smaller than the one we're looking for }
+	 if (tree^.data >= element) then
+	    FindNode(tree^.left, element)
+         else
+	    FindNode(tree^.right, element);
+      end;
+   end
+   else	{ null pointer}
+   begin
+      writeln('Element ', element, ' NOT found');
+      FindNode := nil;
+   end;
+
+end;
+
 begin
    tree := TestTree();
    writeln(tree^.right^.data);
+   FindNode(tree, 3);
+   FindNode(tree, 45);
 end. { BinaryTree }
