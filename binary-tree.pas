@@ -103,6 +103,10 @@ procedure InsertNode (var ioTree : tRefTree; inElement : integer);
 begin
    if (ioTree <> nil) then
    begin
+      if (ioTree^.data >= inElement) then
+	 InsertNode(ioTree^.left, inElement)
+      else
+	 InsertNode(ioTree^.right, inElement);
    end
    else
    begin
@@ -110,9 +114,8 @@ begin
       newNode^.data := inElement;
       newNode^.left := nil;
       newNode^.right := nil;
-      { ioTree = newNode; }
+      ioTree := newNode;
    end;
-
 end;
 
 begin
@@ -123,4 +126,5 @@ begin
    writeln('inserting node 12 test:');
    InsertNode(tree, 12);
    PrintNode(tree^.right^.left);
+   
 end. { BinaryTree }
