@@ -95,7 +95,7 @@ begin
    end;
 end; { FindNode }
 
-{ NEXT-TODO: fully implement }
+
 procedure InsertNode (var ioTree : tRefTree; inElement : integer);
 { inserts the node, no compound nodes, just the integer element }
   var
@@ -116,7 +116,27 @@ begin
       newNode^.right := nil;
       ioTree := newNode;
    end;
-end;
+end; { InsertNode}
+
+function BuildTreeFromInput () : tRefTree;
+  
+  var
+     newTree : tRefTree;
+     input   :  integer;
+begin
+   new(newTree);
+   newTree := nil; { InsertNode() base-case, the empty binary tree, is a tRefTree pointer,
+                     pointing to nil! }
+   writeln('Building a tree from input numbers, type 0 to finish.');
+   repeat
+      write('Next number: ');
+      readln(input);
+      InsertNode(newTree, input);
+   until input = 0;
+   
+   BuildTreeFromInput := newTree;
+
+end;  { BuildTreeFromInput }
 
 begin
    tree := TestTree();
@@ -125,6 +145,10 @@ begin
    PrintNode(FindNode(tree, 44));
    writeln('inserting node 12 test:');
    InsertNode(tree, 12);
+   InsertNode(tree, 12);
    PrintNode(tree^.right^.left);
    
+   dispose(tree); { free the memory of the object pointed to by the tree pointer}
+   tree := BuildTreeFromInput();
+   PrintNode(tree);
 end. { BinaryTree }
