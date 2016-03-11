@@ -119,7 +119,9 @@ begin
 end; { InsertNode}
 
 function BuildTreeFromInput () : tRefTree;
-  
+{ Queries for integer keyboard input and puts them in fresh binary tree.
+  This fresh tree now is called in german "natürlicher Suchbaum" for these
+  integers. }
   var
      newTree : tRefTree;
      input   :  integer;
