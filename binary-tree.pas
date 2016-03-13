@@ -1,3 +1,6 @@
+{ TODO: style guide demands that the formal parameters must be sorted in order:
+  in, io, and out parameters! }
+
 
 { Shows an implementation and operations on the binary tree dynamic
   data structure. }
