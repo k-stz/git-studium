@@ -18,14 +18,14 @@ function FacIter (inN :  integer) : integer;
 
    { Yes, this function can be only seen within FacIter, not in the body
    of the "Recursion" program.  }
-   function Iter (inN : integer; product : integer) : integer;
-   { Auxiliary function hiding the state variable "product" from the API of
+   function Iter (inN : integer; inProduct : integer) : integer;
+   { Auxiliary function hiding the state variable "inProduct" from the API of
      FacIter }
    begin
       if (inN > 0) then
-	 Iter := Iter (inN-1, product * inN)
+	 Iter := Iter (inN-1, inProduct * inN)
       else
-	 Iter := product;
+	 Iter := inProduct;
    end;	{ Iter }
 
 begin
