@@ -1,0 +1,56 @@
+Jargon
+
+analytische Qualitätssicherung,
+Verfahren zur Sicherstellung hoher Softwarequalität; Hauptaugenmerk sei die Korrektheit
+von Programmen.  Des Weiteren: Effizienz, Robustheit, einfache Benutzbarkeit.
+
+konstruktive Qualitätssicherung,
+Maßnahmen während der Programmierung zur reduzierung von Fehlern. z.B. Einhaltung der
+Programierstil-Richtlinien. Benutzung von Software Werkzeugen zur Fehlervermeidung:
+Entwicklungsumgebung (auto completion, syntax highlighting).
+
+
+Spezifikation,
+hält Vor- und Nachbedingung eines Programteils fest (z.b.: einer Prozedur/Funktion). Wenn
+eine Prozedur diese erfüllt sprechen wir von:
+
+Korrektheit,
+einer Funktion/Prozedur bezüglich einer Spezifikation. Denke an eine Abbildung, bei
+der es für _jede_ Eingabe eine Ausgabe geben muss. Diese müssen eine Vorbedingung
+erfüllen (z.b. Teilmenge der Definitionmenge sein) und eine Nachbedingung (" der Zielmenge).
+
+Verifikation,
+formaler bewiesene Korrektheit des Programs. Ist schon bei geringer Programgröße nicht
+zumutbar (Kosten-Nutzen-Verhältnis). Zudem sind sie nur umsetzbar wenn eine _formale_
+Problemspezifikation vorliegt!
+
+Testen,
+jede Tätigkeit die zum Ziel hat fehler im Program zu finden. Man spricht in diesem 
+Zusammenhang von der 
+
+Falsifikation,
+da das Testen nur die Anwesenheit von Fehlern, aber niemals deren Abwesenheit feststellt.
+
+Fehlerursache,
+inkorrekter Programmteil, auftreten zur Laufzeit
+
+Fehlersymptom,
+Schatten einer Fehlerursache, seiner sind Viele, sie sind Einer. Ein Tester kann
+nur Feherhafte Verhalten - die Fehlersymptome - finden.
+
+Fehler,
+Oberbegriff von Fehlerursache und Fehlersymptom
+
+Debuggen,
+Testen (aka finden) + Beseitigen von Fehlern
+
+Prüfling,
+Testsubjekt - Program/Funktion/Prozedur die Ziel des Testen oder Debuggen ist
+
+Testtreiber,
+ein Programm das lediglich zum Ausführen und Steuern von Tests geschrieben wurde
+
+Testlauf,
+ditto, im Fokus stehe ein "systematischer" Testlauf, da dieser versteckte Fehler
+besser und wahrscheinlicher aufgabelt als ein ad hoc Testlauf des Prüflings durch
+seinen Programmierer.
