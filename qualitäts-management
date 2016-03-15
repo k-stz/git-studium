@@ -54,3 +54,15 @@ Testlauf,
 ditto, im Fokus stehe ein "systematischer" Testlauf, da dieser versteckte Fehler
 besser und wahrscheinlicher aufgabelt als ein ad hoc Testlauf des Prüflings durch
 seinen Programmierer.
+
+Testdatum,
+tupel aus: (Eingabedaten, erwartete Ausgabedaten) lt. Spezifikation
+
+Testfall,
+aus Spezifikationo oder Programtext _abgeleitete Menge von Testdaten_
+Diese liefern nun dem Testlauf die "systematische" Grundlage, durch welche
+iteriert werden kann!
+
+Der Testlauf kann somit automatisiert werden. Wir sind nun zusätzlich an einer 
+systematischen Ermittlung sinnvoller Testdaten interessiert, um möglichst viele,
+auch "versteckte", Fehler zu finden
