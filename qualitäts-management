@@ -66,3 +66,100 @@ iteriert werden kann!
 Der Testlauf kann somit automatisiert werden. Wir sind nun zusätzlich an einer 
 systematischen Ermittlung sinnvoller Testdaten interessiert, um möglichst viele,
 auch "versteckte", Fehler zu finden
+
+
+________________________________________________________________________________
+
+
+*** Klassifikation der Verfahren der analytischen Qualitätsicherung ***
+
+Alle Verfahren haben gemein das es sich um als Programmentwicklung /begleitende
+Tätigkeiten/ handelt! Diese Idee sollte man sich stets vorhalten wenn man sich
+in die Verfahren reindenkt.
+
+Verfizierende Verfahren,
+beweist Korrektheit des Programs. (Spezifikation muss formal definiert sein)
++ Höchste Stuffe der Qualitätssicherung
++ gerade für sicherheitskritische Anwendungen wichtig
+- Spezifikation muss formal vorliegen, Semantik der Programmiersprache muss formal
+  definiert sein
+- Aufwendig, selbst kleinste Beweise sind ohne Werkzeug unterstützung eine Zumutung
+
+analysierendes Verfahren,
+quantifiziert eine bestimmte Eigenschaft des Programs. Das mag unintuitive sein, aber
+gemeint sind z.B. strukturelle Komplexität, Programlänge oder Kommentierungsgrad. 
+Die Idee ist die das Überschreitung einer kritischen, aus der Erfahrung frühere Projekte
+abgeleiteten Maßzahl, die Fehlerwahrscheinlichkeit erhöhe und Grund für eine genauere
+Untersuchung geben könnte. 
+Think of this as the broad-phase selecting problem areas for the narrow phase,
+actualized with another testing method.
++ leicht automatisierbar
++ and hence the cheap broad phase is the dawn to the narrow phase
+Metriken quantifizieren Eigenschaften, gennant werden insebesondere die:
+/zyklomatische Zahl/ und die /Halstead-Metrik/
+
+
+testende Verfahren,
+versuchen Fehler aufzudecken. Sie glieden sich in die statischen und dynamischen Verfahren:
+
+/dynamisches Verfahren/,  -- Unser hauptaugenmerk!
+Softwaretest bei dem der Prüfling ausgeführt wird mit einer Menge von Testdaten (möglichst
+vorher systematisch ermittelte).
++ läuft in der realen Umgebung
++ wird mit konkreten Testdaten ausgeführt
+- findet typisch nur Fehlersymptome, keine Fehlerursachen
+- Korrektheit wird nicht bewiesen
+
+
+/statische Verfahren/,
++ program wird hierbei nicht ausgeführt
++ kann auch manuell, ohne computerunterstützung, durchgeführt werden
++ findet auch Fehlerursachen
+- Korrektheit wird auch nicht bewiesen
+Eine Verrwirklichung ist das
+/Review/,
+eine Hand von Menschen setzen sich hin und _lesen das Programm_!
+Manche diese Fehler lassen sich aber sehr wohl auch computerunterstützt erkennen, so etwa
+mit dem /statischen Programmanalysatoren/.
+
+
+	  
+Black-Box-Verfahren,
+benutzt die Spezifikation um Testfälle herzuleiten hingegen das
+
+White-Box-Verfahren,
+bezieht auch die Realisierung - sprich Implementation - des Prüfflings mit in den Test.
+In der Implementierung kann man zwei Dinge testen mit dem
+
+kontrollflussorientierem Testverfahren,
+die Anweisungsabfolge (think cl:trace), und mit dem
+
+datenflussorientierten Testverfahren,
+den Austausch von Daten in Programteilen, z.B. an welcher Stelle im Prüfling Daten
+die in einem Prüfling abgelegt werden, wieder verwendung finden. 
+
+strukturorientiertest Testverfahren, 
+Dieser Begriff fasst die obigen zusammen.  was wäre ein White-Box-Verfahren ohne den Test
+des Datenflusses und des Kontrollverlaufs?
+
+
+Man kann test auch einzelen Stufen der Softwareentwicklung zuordnen, es gibt
+vier:
+
+Unit test (dt. Modultest),
+Testen kleinerer Programmeinheiten
++ wird, für gewöhnlich, durch Programmierer durchgeführt
+
+Integrationstest,
+Programmeinheiten aus dem unit test werden zu größeren zusammengekleistert (sollen aber
+obschon zusammengehören!) und dadurch getestet
+
+Systemtest,
+das gesamte System wird endlich getestet, in einer vom Softwarehaus betreutem Testumgebung.
+Sodann es die gute Stube verlässt in den grausamen
+
+Abnahmetest,
+beim Kunden, in seiner Umgebung. Kann aber auch beim Kunden erst in seiner _Testumgebung_
+ablaufen, bevor dieser sie in die eigentliche Produktumgebung loslässt.
+Der Abnahmetest ist oft Voraussetzung für die Rechnungsstellung!!
+
