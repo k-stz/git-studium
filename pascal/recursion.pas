@@ -14,7 +14,7 @@ begin
 end;  { Fac }
 
 function FacIter (inN :  integer) : integer;
-{ Compute factorial with a function generating an interative process. }
+{ Compute factorial with a function generating an iterative process. }
 
    { Yes, this function can be only seen within FacIter, not in the body
    of the "Recursion" program.  }

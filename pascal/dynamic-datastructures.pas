@@ -1,7 +1,7 @@
-{ dynamic data structure are those who can grow and shrink and run-time
+{ dynamic data structure are those who can grow and shrink at run-time
   such as lists. The opposite are static data structures, like arrays in most
   languages.
-  The dynamic property can be realised with points, by having them point to objects
+  The dynamic property can be realised with pointers, by having them point to objects
   which in turn also contain pointers that could point to others (think closure
   property like with CONS cells. }
 
@@ -68,22 +68,22 @@ procedure BuildList (var outAnchor : tRefList);
 
 begin
    outAnchor := nil;
-   { important usecase of readln(), not introcduced yet, passing it a variable will
+   { important use-case of readln(), not introduced yet, passing it a variable will
    assign the input to it: }
    readln(number);
    while number <> 0 do
    begin
-      new(cons); {allocate fresh memory for a tList, 'cons', datastructure}
+      new(cons); {allocate fresh memory for a tList, 'cons', data structure}
       cons^.car := number; { fill the CAR with data}
 
       { first of remember that if we assign a pointer to another pointer, then what we
       really do is _make them both point to the same thing_ _not_ themselves }
       {this is the crucial part, on the first run through the loop this will let the
       freshly allocated pointer, 'cons', point to the same thing as outAnchor, namely nil,
-      the nullpointer convention.  On every subsequent call it will point to the
+      the null pointer convention.  On every subsequent call it will point to the
       previously allocated 'cons'.  Because the previous cons is what outAnchor in,
       outAnchor := cons;, points to. again: The previously allocated cons will point to
-      the init nullpointer after that, the second run in the while loop, to another
+      the init null pointer after that, the second run in the while loop, to another
       previously allocated cons, as we walk through the loop up until outAnchor gets a new
       thing to point to assigned below, it will keep pointing to the previous cons.}
       cons^.cdr := outAnchor; 

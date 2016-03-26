@@ -1,7 +1,7 @@
-{$R+ <- this neables range checking, this can be enabled by passing an option to the command line
-        compiler: fpc -Cr.
+{$R+ <- this enables range checking, this can be also enabled by passing an option to the
+        command line compiler: fpc -Cr.
         the next option, sadly, doesn't have a commandline switch: }
-{$B+ <- this enable complete boolean evlauation, see the test below using isEvaluated
+{$B+ <- this enables complete boolean evaluation, see the test below using isEvaluated
         it won't be called if this $B+ is missing} 
 (* Author: k-stz *)
 
@@ -14,9 +14,9 @@
          between Begin and End
          we indent by 2 or
            4 spaces, but 
-           consitently 
+           consistently 
        end 
-     - In if-then-else controll structures, the begin/end share the
+     - In if-then-else control structures, the begin/end share the
        same column:
        
        if <predicate> then
@@ -104,7 +104,7 @@ begin
    { readln(age); }
    { writeln('That''s funny, I''m also', age); }
    { writeln('years old! And I have twice as much money:'); }
-   {  money := age * 2;  {<- assignement statement } }
+   {  money := age * 2;  {<- assignment statement } }
    { writeln(money); }
    { writeln( day ); }
    writeln('own type definitions tests: ');
@@ -129,7 +129,7 @@ begin
    writeln(exp(ln(10))); {==> 1.0}
    writeln('Char:');
    writeln(succ('a'));	 {SUCC and PRED are also defined for CHARs}
-   {ORD returns the ordinals for the char, CHAR returns denoted by the ordinat}
+   {ORD returns the ordinals for the char, CHAR returns char denoted by the ordinal}
    writeln(char(ord('t')));
    {Boolean: }
    writeln('Boolean:');
@@ -139,7 +139,7 @@ begin
 
    x := 10;
    writeln(x);
-   begin (* not a new namespace or lexical scope *)
+   begin (* not a new name space or lexical scope *)
       x := 22;
       writeln(x);
    end;

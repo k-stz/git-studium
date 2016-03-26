@@ -2,7 +2,7 @@
 
 { inVar - is like the local constant of a procedure, all function parameters are 'inVars' }
 { var outVar - is never read, only used to return a value, that's why it should always be a var-parameter }
-{ var ioVar - intialized as it is being called, and used to change the the value in the procedure body }
+{ var ioVar - initialized as it is being called, and used to change the the value in the procedure body }
 program ProdcureExample;
 
   var sumCatcher : integer;
@@ -34,7 +34,7 @@ end; { Increment }
   but rather the reference to that variable - or to be perfectly accurate: 
   its address.
   The address is like the global unique identifier of a variable, whoever gets hold
-  of it will change the actuall variable that it belongs to. That's why this procedure
+  of it will change the actual variable that it belongs to. That's why this procedure
   will change the value of a variable that was passed to it rather than its local 
   variable "toBeIncremented".
   In C, C++ the syntax for this is not: var <identifier> but &<identifier> that is
@@ -49,7 +49,7 @@ Efficiency:
   however, don't need to allocate new memory as we're dealing with the reference passed
   directly.
   This should be especially considered when the formal parameters receive huge arguments
-  such as a whole array containg a whole array of pixels.
+  such as a whole array containing a whole array of pixels.
   However, this may be memory efficient but side-effects are a can of worms on their
   own, when it comes to debugging, readability etc. Knuth comes to mind: "Premature 
   optimization is the root of all evil."
