@@ -1,5 +1,5 @@
 
-program merge (input, output);
+program Merge (input, output);
 { liest ohne Eingabeueberpruefung zwei sortierte Felder mit 
   integer-Zahlen ein; beide Felder werden in einem weiteren Feld
   sortiert zusammengefuegt; das Ergebnis wird ausgegeben; ist 
@@ -34,6 +34,8 @@ begin
 
 
   { Verschmelzungsprozess beginnen }
+   { damit man zum testen nicht jedesmal händisch das Array befüllt, 
+     hier Daten eingeben und oberen Block auskommentieren }
    { FELD1[1] := 1; FELD1[2] := 1; FELD1[3] := 1; FELD1[4] := 1; FELD1[5] := 1; }
    { FELD2[1] := -1; FELD2[2] := -1; FELD2[3] := -1; FELD2[4] := -1; FELD2[5] := -1; FELD2[6] := -1; }
    { FELD2[7] := -1; FELD2[8] := -1; }
@@ -75,5 +77,5 @@ begin
   for k := 1 to ERGEBNISFELDLAENGE do
     write (ErgebnisFeld[k], ' ');
   writeln
-end.
+end. { Merge }
 

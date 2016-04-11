@@ -18,12 +18,12 @@ wird als "1 1 1 0 1 1" ausgedrückt d.h. 1*50ct + 1*20ct + 1*10ct + 0*5ct + 1*2c
   var
   i, { index }
   betrag : integer;
-  { arrrays }
+  { arrays }
   { Dieses Array hält die verschiedenen Münzsorten, sodass wir durch sie
     iterieren können und sehen wie oft sie in <betrag> hineinpassen, }
   coinsType : array[tCoinsIndex] of integer;
   { während CoinsUsed das Endergebnis beinhalten wird, d.h., wie oft eine entsprechende
-    Münzsorte im Betrag vorgekommen ist}
+    Münzsorte im Betrag vorgekommen ist }
   coinsUsed : array[tCoinsIndex] of integer;
 
 
