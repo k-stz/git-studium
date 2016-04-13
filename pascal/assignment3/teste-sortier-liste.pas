@@ -9,71 +9,94 @@ program TesteSortiereListe(input, output);
            end;
 
   var
-  RefListe    : tRefListe;
-  Sortiert : integer;
+  RefListe : tRefListe;
 
   procedure SortiereListe (var ioRefListe : tRefListe);
   { sortiert eine lineare Liste aufsteigend }
+ { sortiert eine lineare Liste aufsteigend }
      var
-     { Start und Ende der sortierten Liste, diese werden
-       sich zur Laufzeit auseinander ziehen.}
-     RefStart,
-     RefEnde,
-     { wird ein interpolierten Zeiger zwischen RefStart und RefEnde
-       halten.. }
-     interZeiger,
-     { zum entfernen des vordersten, unsortierten, Elements beim
-       einfuegen in den sortierten Teil. }
-     RefVorgaenger : tRefListe;
-     { ..zum iterieren durch die sortierte Liste sodass wir ein
-       neues Element einfügen können.  }
      i : integer;
-     Eingefuegt : boolean;
-     
-  begin
-     writeln('SortiereListe---------------');
-     { base case - die Leere Liste }
-     if ioRefListe <> nil then
-     begin
-	{ init }
-	RefStart := ioRefListe;
-	interZeiger := ioRefListe;
-	RefVorgaenger := ioRefListe;
-	RefEnde := ioRefListe^.next;
-	Sortiert := 1;
-	{ the main algorithm }
-	while RefEnde <> nil do
-	begin
-	   writeln(RefEnde^.info);
+     tmp,
+     iterZeiger,
+     Zeiger : tRefListe;
+     eingefuegt : boolean;
 
-	   i := 1;
-	   Eingefuegt := false;
-	   while (i <= Sortiert) and (not Eingefuegt) do
-	   begin
-	      writeln('i:', i);
-	      writeln(RefEnde^.info);
-	      if (interZeiger^.info >= RefEnde^.info) then
-	      begin
-		 { RefEnde entfernen }
-		 writeln('interZeiger >= RefEnde', ' ', interZeiger^.info, ' ', RefEnde^.info);
-		 writeln(RefVorgaenger^.info);
-		 
-	      end;
-	      i := i + 1;
-	   end;
-	   
-	   RefEnde := RefEnde^.next;
-	end;
+   begin
+      { writeln('SortiereListe---------------'); }
+      { base case - die Leere Liste }
+      if ioRefListe <> nil then
+      begin
+	 { init }
+	 Zeiger := ioRefListe;
+	 new(tmp);
+	 while (Zeiger^.next <> nil) do
+	 begin
+	    { kleinstes Element? }
+	    if(ioRefListe^.info >= Zeiger^.next^.info) then
+	    begin
+       	       writeln('kleinstes: ', Zeiger^.next^.info);
+	       { Verweis auf Folgeelement wird zwischengespeichert }
+	       tmp := Zeiger^.next^.next;
+	       { Element wird an Anfang der Liste gehangen }
+	       Zeiger^.next^.next := ioRefListe;
+	       { Element wird zum neuen Anfang der Liste }
+	       ioRefListe := Zeiger^.next;
+	       { Letztes sortiertes Element zeigt nun auf den Nachfolger des Elements bevor es
+	         umgehangenen wurde, d.h. das nächste unsortierte Element. }
+       	       Zeiger^.next := tmp;
+	    end
+	 else 
+	 begin
+	    { element ist das größte? }
+	    if (Zeiger^.info <= Zeiger^.next^.info) then
+	    begin
+	       { easy, element einfach vorne belassen und es zum neuen vordersten Zeiger machen. }
+	       writeln('größtes: ',Zeiger^.next^.info);
+	       Zeiger := Zeiger^.next;
+	    end
+	    else
+	    begin
+	       { Element is weder das kleinste noch das größte, jetzt suchen wir nach einer Stelle
+	       in der sortierten Liste um es einzuhängen. }
+	       eingefuegt := false;
+	       iterZeiger := ioRefListe;
+	       while (not eingefuegt) do
+               begin
+		  if (iterZeiger^.next^.info >= Zeiger^.next^.info) then
+		  begin
+		     tmp := Zeiger^.next^.next; {Folgeelement zwischenspeichern}
+		     { Element wird umgehangen }
+		     Zeiger^.next^.next := iterZeiger^.next; {sortierte liste *klick* vorne}
+		     iterZeiger^.next := Zeiger^.next; {sortierte liste *klick* hinten}
+		     
+		     { letztes sortiertes Element zeigt nun auf das nächste unsortierte aus tmp }
+		     Zeiger^.next := tmp;
+		     eingefuegt := true;
+		  end;
+		  iterZeiger := iterZeiger^.next;
+	       end;
+	    end;
+
+	    
 
 
-	writeln('RefEnde = nil!');
-     end
-     else
-	writeln('ioRefListe is nil');
 
-     writeln('/SortiereListe--------------');
-  end;
+	       { wird durchsuchen die sortierte Liste nach einem Platz um das nächste Element einzuhängen. }
+	       { tmp := ioRefListe; }
+	       { while (i <= Sortiert) do }
+	       { begin }
+	       { 	  if (iterZeiger^.info <= Zeiger^.next^.info) }
+	       { 	  i := i + 1; }
+	       { end; }
 
+
+	 end;
+	    { TODO kann entfernt werden, die while terminierung ergibt sich dadurch das wir das nächste element
+	      weghängen!}
+	 end;
+      end;
+      { writeln('/SortiereListe--------------'); }
+   end;
 procedure Anhaengen(var ioListe : tRefListe;
                         inZahl : tNatZahl);
 { Haengt inZahl an ioListe an }
@@ -133,11 +156,7 @@ begin
 end; { GibListeAus }
 
 begin
-  { ListeEinlesen(RefListe); }
-  { test data! Remove once implemented }
-  Anhaengen(RefListe, 1); 
-  Anhaengen(RefListe, 44); Anhaengen(RefListe, 3); Anhaengen(RefListe, 0);
+  ListeEinlesen(RefListe);
   SortiereListe(RefListe);
   GibListeAus(RefListe)
-end. { TesteSortiereListe }
-
+end.
