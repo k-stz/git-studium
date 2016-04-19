@@ -2,8 +2,17 @@ Abbildung, funktion		function
 Definitionsmenge		domain
 Zielmenge			codomain
 Bild				image
+neutrales Element		identity element
+Vektorraum			vector space
 erweiterte matrix		augmented matrix
 koeffiziented matrix		coefficient matrix
+Basen	      			bases
+Rang (Matrix) 			rank
 TNF, Treppennormalform		reduced row echelon form
 gauß eliminiationsverfahren
      /algorithmus		Gaussian eliminiation
+
+
+Matrixdarstellung,
+Abbildungsmatrix,
+Darstellungsmatrix		Transformation matrix !
