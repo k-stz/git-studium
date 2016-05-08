@@ -34,10 +34,15 @@ begin
         begin { Suchwert ist gefunden }
           gefunden := true;
           { **Umhaengen** }
-	   UmhaengeHilfe := ZuletztGeprueftesElement^.next;
-	   ZuletztGeprueftesElement^.next := UmhaengeHilfe^.next;
-	   UmhaengeHilfe^.next := ioAnfang;
-           ioAnfang := UmhaengeHilfe;
+	   { UmhaengeHilfe := ZuletztGeprueftesElement^.next; }
+	   { ZuletztGeprueftesElement^.next := UmhaengeHilfe^.next; }
+	   { UmhaengeHilfe^.next := ioAnfang; }
+           { ioAnfang := UmhaengeHilfe; }
+	   new (UmhaengeHilfe); { doesn't work without the NEW! }
+	   UmhaengeHilfe^.next := ZuletztGeprueftesElement^.next;
+	   ZuletztGeprueftesElement^.next := UmhaengeHilfe^.next^.next;
+	   UmhaengeHilfe^.next^.next := ioAnfang;
+	   ioAnfang := UmhaengeHilfe^.next;
           {/ **Umhaengen** }
         end
         else 
@@ -46,6 +51,20 @@ begin
   outGefunden := gefunden
 end; { moveToFront }
 
+  var
+  list, cdr : tRefListe;
+
+     test : boolean;
+
 begin
-   
+   test := false;
+   new(list);
+   list^.info := 10;
+   new (cdr);
+   cdr^.info := 33;
+   list^.next := cdr;
+   writeln(list^.info);
+   writeln(list^.next^.info);
+   moveToFront(33, list, test);
+   writeln(list^.info);
 end.
