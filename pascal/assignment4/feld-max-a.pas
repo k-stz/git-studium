@@ -140,7 +140,7 @@ function FeldMaxE (
   HilfMax : integer; { Hilfsvariable }
 
 begin
-  HilfMax := 0;
+  HilfMax := 0;	     { init wert 0, aber kann negative Zahlen enthalten!}
   for i := inUnten to inOben do
     if inFeld[i] > HilfMax then
       HilfMax := inFeld[i];
@@ -161,5 +161,7 @@ begin
 				      nur "segmentation fault" error. wew}
    { writeln(FeldMaxC(Feld, 0, 0)); same as B also oversteps array bounds! }
    { writeln(FeldMaxD(Feld, 0, 0)); same as C, but no overstepping }
-   writeln(FeldMaxE(Feld, 0, 9)); { nice, straightforward, implementation}
+   writeln(FeldMaxE(Feld, 0, 9)); { nice, straightforward, implementation
+				  UPDATE: wrong, as HilfMax assumes 0 as init value
+				  and the array may contain negative numbers}
 end.
