@@ -29,11 +29,12 @@ begin
    end
    else	{ kein Blatt erreicht}
    begin
-       if (inRefWurzel^.Wert > pfadMax) then
-   	 pfadMax := inRefWurzel^.Wert;
+      { pfadMax evtl. anpassen}
+      if (inRefWurzel^.Wert > pfadMax) then
+	 pfadMax := inRefWurzel^.Wert;
 
       { rekursiv Baum runterlaufen, wir müssen beachten das
-        manche knoten nur links, nur rechts oder auf beiden Seiten
+        manche Knoten nur links, nur rechts oder auf beiden Seiten
         Knoten haben }
       if (inRefWurzel^.links = nil) then
 	 BlattMax := BlattMax (inRefWurzel^.rechts, pfadMax)
