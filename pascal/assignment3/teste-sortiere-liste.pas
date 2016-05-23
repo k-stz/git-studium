@@ -13,11 +13,11 @@ program TesteSortiereListe(input, output);
 
   procedure SortiereListe (var ioRefListe : tRefListe);
   { sortiert eine lineare Liste aufsteigend }
-     var
-     tmp, { Hilfsvariable zum umhängen}
-     iterZeiger, { zum iterieren durch die Liste}
-     Zeiger : tRefListe; { das letzte sortierte Element }
-     Eingefuegt : boolean;
+    var
+    tmp, { Hilfsvariable zum umhängen}
+    iterZeiger, { zum iterieren durch die Liste}
+    Zeiger : tRefListe; { das letzte sortierte Element }
+    Eingefuegt : boolean;
 
   { Im folgenden heißt "Element" immer das erste Element aus dem unsortieren Listen Teil. }
   begin
@@ -26,6 +26,7 @@ program TesteSortiereListe(input, output);
     begin
       { init }
       Zeiger := ioRefListe;
+      { new(tmp); }
       while (Zeiger^.next <> nil) do
       begin
 	{ kleinstes Element? -> hänge an den Anfang der Liste}
