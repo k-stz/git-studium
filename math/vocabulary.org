@@ -1,0 +1,24 @@
+* Mathe Jargon
+
+#+Title: Mathe Jargon
+#+Options: toc:nil
+  
+| Abbildung,funktion          | function                 |
+| Definitionsmenge            | domain                   |
+| Zielmenge                   | codomain                 |
+| Bild                        | image                    |
+| neutrales Element           | identity element         |
+| Vektorraum                  | vector space             |
+| Erzeugendensystem           | Generator                |
+| erweiterte matrix           | augmented matrix         |
+| koeffiziented matrix        | coefficient matrix       |
+| Basen                       | bases                    |
+| Rang (Matrix)               | rank                     |
+| TNF, Treppennormalform      | reduced row echelon form |
+| gauß Eliminiationsverfahren | Gaussian eliminiation    |
+| /algorithmus                |                          |
+|                             |                          |
+|                             |                          |
+| Matrixdarstellung,          | Transformation matrix    |
+| Abbildungsmatrix,           |                          |
+| Darstellungsmatrix          |                          |
