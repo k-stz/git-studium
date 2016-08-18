@@ -1,0 +1,47 @@
+* 2011 NK
+** Aufgabe 1
+   a) a=3 b=4:
+
+   Punkte: 2+4
+
+
+** Aufgabe 2
+
+#+BEGIN_SRC pascal
+Program Aufgabe2(input, output);
+{ Program tut dies und jenes.. Kommentar nicht vergessen!! }
+
+procedure angespartes(inZinsen : integer; inLaufzeit : integer; ioBetrag : real);
+
+var 
+  i	     : integer;		 { iterations variable}
+begin
+  i := 1;
+  for i:= 1 to inLaufzeit do
+  begin
+    ioBetrag := ioBetrag + (ioBetrag * inZinsen * 0.01);
+    writeln('Nach ', i, ' Jahren ', ioBetrag:2:2);
+  end;
+end;
+
+begin
+  angespartes(3, 4, 100);
+end.
+#+END_SRC
+
+** Fehler:
+   1. Program muss kommentiert
+   2. Program(input, output)
+   3. for i:= 1 to 10 do .. anstatt while. Bedenke die iterationsvariable muss im
+      Deklarationsteil eingeführt werden
+   4. Formatierten der Ausgabe ioBetrag:2:2
+      - erste '2' ist die mindest anzahl an stellen welche die gesamte zahl einnehen wird
+      - zweite '2' ist die anzahl der Nachkommastellen
+
+   Punkte: 5
+   
+** Aufgabe 3
+   Punkte: 6
+
+** Aufgabe 7
+   Punkte: 7

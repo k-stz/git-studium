@@ -1,0 +1,13 @@
+Program Aufgabe2;
+
+type
+  tNatZahl = 0 .. maxint;
+
+var
+  Laufzeit,
+  Betrag : integer;
+  Zinsen   : real;
+
+begin
+end.
+
