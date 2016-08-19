@@ -34,5 +34,6 @@ begin
   writeln(Liste^.next^.info);
 
   { Liste^.info = 22; }
-
+  writeln('test some expressions:');
+  writeln(5 mod 2);
 end. {Test}
