@@ -1,0 +1,38 @@
+Inhalt der Klausur Einführung in imperative Programmierung vom <2016-08-20 Sa> , aus dem
+Gedächtnis, da ich selbst an der Klausur teilgenommen habe.
+
+Alle Aufgaben waren Programmier Aufgaben - es kam nichts aus der letzten
+Kurseinheit, Qualitäts Management, dran. 
+
+Es gab für alle Aufgaben 6 Punkte, wie man sieht. Dabei varierte der Schwierigkeitsgrad
+doch stark. Es gab 4 Aufgaben. Man besteht mit 12 Punkten - zwei richtige Aufgaben
+reichen.
+
+* Aufgabe 1: - 6 Punkte
+  gegebenn war ein =Array[10]=, die ersten 9 einträge wurden eingelesen mit
+  =readln(array[0.. 9])=. Daraufhin musste man eine for-loop nachvollziehen
+  welche die eingelesenen Elemente summiert.
+  Ausgabe: die Summe wurde von 45 abgezogen.
+
+  - Es musste ein Kommentar geschrieben darüber was das Program macht
+  - Eingabe beschrieben oder Ausgabe, nicht mehr sicher
+  - Nachbedingung angeben
+
+* Aufgabe 2: - 6 Punkte
+  Eine doppelt verkettete Liste war gegeben.
+  Wenn ich mich recht entsinne musste das Entfernen und Einfügen von Elementen
+  implementiert werden.
+
+* Aufgabe 3: - 6 Punkte
+  Eine sortierte lineare Liste war gegeben. Man musste nach einem Element suchen, wenn es
+  enthalten war musste es gelöscht werden. Wenn es nicht enthalten war musste es eingefügt
+  werden. Die mitunter schwerste Aufgabe da man das Program nunmal auf Papier schreiben
+  musste und der Umfang m.E. das Hauptproblem darstellt.
+
+* Aufgabe 4: - 6 Punkte
+  Ein Binärerbaum war gegeben, man musste ein rekursive Funktion schreiben welche die
+  durch "3" teilbaren Knoten aufzählt. Wenn man komfortabel mit Rekursion ist, konnte man
+  die Aufabe im Anhieb lösen. Danke für die 6 Punkte!
+  Im Kern:
+  =if ((mod baum^.wert 3) = 0) then=
+  Rec := 1 + Rec(baum^.left-branch) + Rec(baum^.right-branch);
